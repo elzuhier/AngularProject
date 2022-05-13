@@ -1,0 +1,24 @@
+<select name="Products" id="Products" class="form-select dropdown-toggle " [(ngModel)]="SelectedCategory" #Products>
+    <!-- (change)="CatChange(Products.value)" -->
+   <!-- Using Structural directive -->
+     <option [value]=0>-- All --</option>
+      <option *ngFor="let item of categoryList" [value]="item.ID">
+          {{item.Name}}
+      </option>
+    </select>
+    <ul>
+      <li>TotalPrice={{TotalCartPrice}}</li>
+      <li *ngFor="let item of ShoppingCartItem">
+      Product Name={{item.productName}} / product price={{item.unitPrice}} / product Quantity={{item.selectedQuantity}}</li>
+    </ul>
+    <h4>
+        Order Total Price: {{receivedOrderTotalPrice | currency}}
+      </h4>
+    <app-cart-child [recievedSelectedCatID]="SelectedCategory"
+                    (onTotalPriceChanged)="updateTotalPrice($event)"
+                    (onAddToCartChanged)="updateAddToCart($event)"></app-cart-child>
+    <input type="button" class="btn btn-primary m-1" value="PLace order" (click)="DecreaseQuantity()" >
+  <input #Select_item type="text" value="Welcome Hamada" class="form-control w-25" >
+
+                   
+

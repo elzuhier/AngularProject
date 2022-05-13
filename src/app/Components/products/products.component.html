@@ -1,0 +1,59 @@
+<!-- Using interpolation -->
+<h1>Welcome in Store {{Store.Name}}</h1>
+<!-- using proberty binding -->
+<!-- <img [src]=''> -->
+<!-- Using Structural directive -->
+<h3 *ngIf="Discount==4"> "We offer an explicit discount of:  <b>10%"</b></h3>
+     <label for="Products">Products:</label>
+     <!-- Category Dropdown -->
+     <select name="Products" id="Products" class="form-select dropdown-toggle " #Products
+     (change)="CatChange(Products.value)">
+<!-- Using Structural directive -->
+
+  <option [value]=0>-- All--</option>    
+  <option *ngFor="let item of categoryList" [value]="item.ID">
+           {{item.Name}}
+       </option>
+       
+     </select>
+
+     <!-- <label for="Name">Name:</label>
+     <input type="text" id="Name" name="Name" [(ngModel)]="ClientName" >  -->
+     
+  <!-- <button type="button" class="btn btn-primary d-block" (click)="Done()"> Done</button> -->
+     
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th *ngFor = "let column of productListHeader"  >{{column}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [hidden]="item.Quantity==0" *ngFor = "let item of CatProd" 
+      [ngStyle]="{'color':item.Quantity==1? 'yellow':'white'}">
+        
+        <th>{{ item.ID }}</th>
+        <td>{{ item.Name }}</td>
+        <td >{{ item.Quantity }}</td>
+        <td>{{ item.price }}</td>
+        <!-- <td>{{ item.Img }}</td> -->
+        <td><img [src]=" item.Img " ></td>
+        <td>{{ item.CategoryID }}</td>
+        <td><button class="btn btn-primary" (click)="onClick(item)">Buy</button></td>
+
+      
+      <tr>
+        
+    </tbody>
+  </table>
+
+
+  <!-- product card -->
+  <!-- <div class="card" style="width: 18rem;" id="Card" appRoundBorderShadow="70px">
+    <img [src]="productList[0].Img" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h3 class="card-title">{{productList[0].Name}}</h3>
+      <h4 class="card-text">Quantity={{productList[0].Quantity}}</h4>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div> -->
